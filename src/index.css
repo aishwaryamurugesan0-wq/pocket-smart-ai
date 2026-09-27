@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-paper text-ink-800 font-body antialiased;
+  font-feature-settings: 'tnum' 1;
+}
+
+html.dark body {
+  @apply bg-ink-900 text-paper-soft;
+}
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(19,26,42,0.18); border-radius: 8px; }
+html.dark ::-webkit-scrollbar-thumb { background: rgba(239,241,236,0.18); }
+
+/* Focus visibility for accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid #1F6F5C;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Progress bar track */
+.progress-track {
+  @apply w-full h-2.5 rounded-full bg-ink-50 dark:bg-ink-700 overflow-hidden;
+}
+.progress-fill {
+  @apply h-full rounded-full transition-[width] duration-500 ease-out;
+}
+
+/* Card base */
+.card {
+  @apply bg-white dark:bg-ink-800 rounded-xl2 shadow-card border border-ink-50 dark:border-ink-700;
+}
+
+/* Fade in for toasts / panels */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slideUp 0.25s ease-out;
+}
